@@ -1,0 +1,16 @@
+[Unit]
+Description=Setup Docker Compose
+After=network.target
+ConditionPathExists=!/opt/bin/docker-compose
+
+[Service]
+Type=oneshot
+Environment=DOCKER_COMPOSE_VERSION=1.23.1
+ExecStart=/usr/bin/mkdir -p /opt/bin
+ExecStart=/usr/bin/curl -sLo /opt/bin/docker-compose https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-Linux-x86_64
+ExecStart=/usr/bin/chmod +x /opt/bin/docker-compose
+ExecStart=/usr/bin/bash -c /opt/apy/install.sh -I /opt/python/
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target

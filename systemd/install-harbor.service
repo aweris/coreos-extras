@@ -1,0 +1,16 @@
+[Unit]
+Description=Setup VMWare Harbor
+After=network.target
+ConditionPathExists=!/opt/harbor
+
+[Service]
+Type=oneshot
+Environment=HARBOR_PACKAGE=harbor-offline-installer-v1.5.4
+ExecStart=/usr/bin/curl -sLo /opt/${HARBOR_PACKAGE}.tgz https://storage.googleapis.com/harbor-releases/${HARBOR_PACKAGE}.tgz
+ExecStart=/usr/bin/tar -xzvf ${HARBOR_PACKAGE}.tgz
+ExecStart=/usr/bin/sed -i "s%#!/usr/bin/python%#!/opt/bin/python%" /opt/harbor/prepare
+ExecStart=/usr/bin/rm -rf ${HARBOR_PACKAGE}.tgz
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,24 @@
+[Unit]
+Description=Setup Python
+After=network.target
+ConditionPathExists=!/opt/bin/python
+
+[Service]
+Type=oneshot
+Environment=PYTHON_VERSION=2.7.13.2715
+Environment=PYTHON_PACKAGE=ActivePython-2.7.13.2715-linux-x86_64-glibc-2.12-402695
+ExecStart=/usr/bin/mkdir -p /opt/bin
+ExecStart=/usr/bin/curl -sLo /opt/${PYTHON_PACKAGE}.tar.gz http://downloads.activestate.com/ActivePython/releases/${PYTHON_VERSION}/${PYTHON_PACKAGE}.tar.gz
+ExecStart=/usr/bin/tar -xzvf /opt/${PYTHON_PACKAGE}.tar.gz  -C /opt
+ExecStart=/usr/bin/mv /opt/${PYTHON_PACKAGE} /opt/apy
+ExecStart=/opt/apy/install.sh -I /opt/python/
+ExecStart=/usr/bin/ln -sf /opt/python/bin/easy_install /opt/bin/easy_install
+ExecStart=/usr/bin/ln -sf /opt/python/bin/pip /opt/bin/pip
+ExecStart=/usr/bin/ln -sf /opt/python/bin/python /opt/bin/python
+ExecStart=/usr/bin/ln -sf /opt/python/bin/python /opt/bin/python2
+ExecStart=/usr/bin/ln -sf /opt/python/bin/virtualenv /opt/bin/virtualenv
+ExecStart=/usr/bin/rm -rf /opt/apy /opt/${PYTHON_PACKAGE}.tar.gz
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target
