@@ -6,6 +6,6 @@ PACKAGE=docker-compose-`uname -s`-`uname -m`
 # make directory
 mkdir -p /opt/bin
 
-curl -L https://github.com/docker/compose/releases/download/${VERSION}/${PACKAGE} -o /opt/bin/docker-compose
+curl -sL https://github.com/docker/compose/releases/download/${VERSION}/${PACKAGE} -o /opt/bin/docker-compose
 
 chmod +x /opt/bin/docker-compose

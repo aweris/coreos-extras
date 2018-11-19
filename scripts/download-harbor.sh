@@ -8,7 +8,7 @@ mkdir -p /opt/bin
 
 cd /opt
 
-curl -sL https://storage.googleapis.com/harbor-releases/${PACKAGE}.tgz -o /opt
+curl -sL https://storage.googleapis.com/harbor-releases/${PACKAGE}.tgz -o /opt/${PACKAGE}.tgz
 
 tar -xzvf ${PACKAGE}.tgz && rm -rf ${PACKAGE}.tgz
 
