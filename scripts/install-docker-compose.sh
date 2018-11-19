@@ -1,4 +1,4 @@
-#!/bin/bash -uxe
+#!/usr/bin/bash -uxe
 
 VERSION=1.23.1
 PACKAGE=docker-compose-`uname -s`-`uname -m`

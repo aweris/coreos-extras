@@ -1,4 +1,4 @@
-#!/bin/bash -uxe
+#!/usr/bin/bash -uxe
 
 VERSION=v1.5.4
 PACKAGE="harbor-offline-installer-${VERSION}"
