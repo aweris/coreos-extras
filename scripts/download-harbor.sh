@@ -2,7 +2,6 @@
 
 VERSION=v1.5.4
 PACKAGE="harbor-offline-installer-${VERSION}"
-EXTRA_PARAMS="--with-clair"
 
 # make directory
 mkdir -p /opt/bin
