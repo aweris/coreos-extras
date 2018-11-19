@@ -12,3 +12,6 @@ cd /opt
 curl -sL https://storage.googleapis.com/harbor-releases/${PACKAGE}.tgz -o /opt
 
 tar -xzvf ${PACKAGE}.tgz && rm -rf ${PACKAGE}.tgz
+
+## Fixin shebang for CoreOS
+cd harbor && sed -i 's%#!/usr/bin/python%#!/opt/bin/python%' prepare
